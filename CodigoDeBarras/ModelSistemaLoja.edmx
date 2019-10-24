@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistemaLojaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="IdBanco" />
+          </Key>
+          <Property Name="IdBanco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeBanco" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="idConta" />
+          </Key>
+          <Property Name="idConta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescConta" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="idTipoConta" Type="int" Nullable="false" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estoque">
+          <Key>
+            <PropertyRef Name="IdEstoque" />
+          </Key>
+          <Property Name="IdEstoque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCodigo" Type="int" Nullable="false" />
+          <Property Name="CodBarras" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar" MaxLength="250" />
+          <Property Name="Grupo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Curva" Type="nvarchar" MaxLength="1" />
+          <Property Name="Unidade" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumeroFab" Type="nvarchar" MaxLength="50" />
+          <Property Name="EstoqueMin" Type="int" />
+          <Property Name="EstoqueMax" Type="int" />
+          <Property Name="EstoqueDisp" Type="int" Nullable="false" />
+          <Property Name="Custo" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="Lucro" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="Venda" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Dolar" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="ABC" Type="int" />
+          <Property Name="Fornecedor" Type="int" />
+          <Property Name="Local" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gaveta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Utilizado" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fabricante" Type="nvarchar" MaxLength="150" />
+          <Property Name="SubGrupo" Type="nvarchar" MaxLength="150" />
+          <Property Name="NomeCurto" Type="nvarchar" MaxLength="150" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="250" />
+          <Property Name="NCM" Type="nvarchar" MaxLength="10" />
+          <Property Name="C_CST_O" Type="int" />
+          <Property Name="C_CST" Type="int" />
+          <Property Name="C_ECF_ALIQ" Type="int" />
+          <Property Name="C_ICMS" Type="int" />
+          <Property Name="C_ICMS_ST" Type="int" />
+          <Property Name="C_IPI" Type="int" />
+          <Property Name="C_RED_BCALC" Type="int" />
+          <Property Name="DataUltVenda" Type="date" />
+          <Property Name="DataUltCompra" Type="date" />
+          <Property Name="CFOP_INUF" Type="int" />
+          <Property Name="CFOP_OUTUF" Type="int" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstoqueApurado">
+          <Key>
+            <PropertyRef Name="IdEstoqueApurado" />
+          </Key>
+          <Property Name="IdEstoqueApurado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="int" Nullable="false" />
+          <Property Name="CodBarrasApurado" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DataUltModif" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstoqueApuradoLog">
+          <Key>
+            <PropertyRef Name="IdEstoqueApuradoLog" />
+          </Key>
+          <Property Name="IdEstoqueApuradoLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEstoqueApurado" Type="int" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="int" Nullable="false" />
+          <Property Name="CodBarrasApurado" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DataModifApurado" Type="datetime" Nullable="false" />
+          <Property Name="DataModifLog" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstoqueDivergente">
+          <Key>
+            <PropertyRef Name="IdEstoqueDivergente" />
+          </Key>
+          <Property Name="IdEstoqueDivergente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEstoque" Type="int" Nullable="false" />
+          <Property Name="CodBarras" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumeroFab" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EstoqueDisp" Type="int" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="int" Nullable="false" />
+          <Property Name="DataInclusao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstoqueImpressaoEtiqueta">
+          <Key>
+            <PropertyRef Name="IdEstoqueImpressaoEtiqueta" />
+          </Key>
+          <Property Name="IdEstoqueImpressaoEtiqueta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCodigo" Type="int" Nullable="false" />
+          <Property Name="CodigoBarras" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Grupo" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumeroFab" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EstoqueDisp" Type="int" Nullable="false" />
+          <Property Name="Venda" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Fornecedor" Type="int" />
+        </EntityType>
+        <EntityType Name="SaldoInicialBanco">
+          <Key>
+            <PropertyRef Name="idSaldoInicialBanco" />
+          </Key>
+          <Property Name="idSaldoInicialBanco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idBanco" Type="int" Nullable="false" />
+          <Property Name="ValorInicial" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Ano" Type="int" Nullable="false" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubConta">
+          <Key>
+            <PropertyRef Name="idSubConta" />
+          </Key>
+          <Property Name="idSubConta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescSubConta" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="idConta" Type="int" Nullable="false" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoConta">
+          <Key>
+            <PropertyRef Name="idTipoConta" />
+          </Key>
+          <Property Name="idTipoConta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoConta" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DataModif" Type="datetime" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Conta_TipoConta">
+          <End Role="TipoConta" Type="Self.TipoConta" Multiplicity="1" />
+          <End Role="Conta" Type="Self.Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConta">
+              <PropertyRef Name="idTipoConta" />
+            </Principal>
+            <Dependent Role="Conta">
+              <PropertyRef Name="idTipoConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaldoInicialBanco_Banco">
+          <End Role="Banco" Type="Self.Banco" Multiplicity="1" />
+          <End Role="SaldoInicialBanco" Type="Self.SaldoInicialBanco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco">
+              <PropertyRef Name="IdBanco" />
+            </Principal>
+            <Dependent Role="SaldoInicialBanco">
+              <PropertyRef Name="idBanco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubConta_Conta">
+          <End Role="Conta" Type="Self.Conta" Multiplicity="1" />
+          <End Role="SubConta" Type="Self.SubConta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="idConta" />
+            </Principal>
+            <Dependent Role="SubConta">
+              <PropertyRef Name="idConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ExcluirEstoque" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SalvaEstoqueDivergente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelecEstoqueApuradoGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelecGrupoPorCusto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelecSubGrupoPorCusto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectEstoqueSemApuracao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelecTodasTabelas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SistemaLojaModelStoreContainer">
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conta" EntityType="Self.Conta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estoque" EntityType="Self.Estoque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstoqueApurado" EntityType="Self.EstoqueApurado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstoqueApuradoLog" EntityType="Self.EstoqueApuradoLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstoqueDivergente" EntityType="Self.EstoqueDivergente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstoqueImpressaoEtiqueta" EntityType="Self.EstoqueImpressaoEtiqueta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaldoInicialBanco" EntityType="Self.SaldoInicialBanco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubConta" EntityType="Self.SubConta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoConta" EntityType="Self.TipoConta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Conta_TipoConta" Association="Self.FK_Conta_TipoConta">
+            <End Role="TipoConta" EntitySet="TipoConta" />
+            <End Role="Conta" EntitySet="Conta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaldoInicialBanco_Banco" Association="Self.FK_SaldoInicialBanco_Banco">
+            <End Role="Banco" EntitySet="Banco" />
+            <End Role="SaldoInicialBanco" EntitySet="SaldoInicialBanco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubConta_Conta" Association="Self.FK_SubConta_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="SubConta" EntitySet="SubConta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaLojaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Estoque">
+          <Key>
+            <PropertyRef Name="IdEstoque" />
+          </Key>
+          <Property Name="IdEstoque" Type="Int32" Nullable="false" />
+          <Property Name="IdCodigo" Type="Int32" Nullable="false" />
+          <Property Name="CodBarras" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomeProduto" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Grupo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Curva" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Unidade" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroFab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EstoqueMin" Type="Int32" />
+          <Property Name="EstoqueMax" Type="Int32" />
+          <Property Name="EstoqueDisp" Type="Int32" Nullable="false" />
+          <Property Name="Custo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Lucro" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Venda" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Dolar" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ABC" Type="Int32" />
+          <Property Name="Fornecedor" Type="Int32" />
+          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gaveta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Utilizado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fabricante" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SubGrupo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NomeCurto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NCM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="C_CST_O" Type="Int32" />
+          <Property Name="C_CST" Type="Int32" />
+          <Property Name="C_ECF_ALIQ" Type="Int32" />
+          <Property Name="C_ICMS" Type="Int32" />
+          <Property Name="C_ICMS_ST" Type="Int32" />
+          <Property Name="C_IPI" Type="Int32" />
+          <Property Name="C_RED_BCALC" Type="Int32" />
+          <Property Name="DataUltVenda" Type="DateTime" Precision="0" />
+          <Property Name="DataUltCompra" Type="DateTime" Precision="0" />
+          <Property Name="CFOP_INUF" Type="Int32" />
+          <Property Name="CFOP_OUTUF" Type="Int32" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="SistemaLojaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Estoques" EntityType="Self.Estoque" />
+          <EntitySet Name="EstoqueApuradoes" EntityType="SistemaLojaModel.EstoqueApurado" />
+          <EntitySet Name="EstoqueApuradoLogs" EntityType="SistemaLojaModel.EstoqueApuradoLog" />
+          <EntitySet Name="EstoqueDivergentes" EntityType="SistemaLojaModel.EstoqueDivergente" />
+          <FunctionImport Name="SalvaEstoqueDivergente" />
+          <FunctionImport Name="SelectEstoqueSemApuracao" ReturnType="Collection(SistemaLojaModel.SelectEstoqueSemApuracao_Result)" />
+          <FunctionImport Name="ExcluirEstoque">
+          </FunctionImport>
+          <FunctionImport Name="SelecGrupoPorCusto" ReturnType="Collection(SistemaLojaModel.SelecGrupoPorCusto_Result)" />
+          <FunctionImport Name="SelecSubGrupoPorCusto" ReturnType="Collection(SistemaLojaModel.SelecSubGrupoPorCusto_Result)" />
+          <EntitySet Name="Bancoes" EntityType="SistemaLojaModel.Banco" />
+          <EntitySet Name="Contas" EntityType="SistemaLojaModel.Conta" />
+          <EntitySet Name="EstoqueImpressaoEtiquetas" EntityType="SistemaLojaModel.EstoqueImpressaoEtiqueta" />
+          <EntitySet Name="SaldoInicialBancoes" EntityType="SistemaLojaModel.SaldoInicialBanco" />
+          <EntitySet Name="SubContas" EntityType="SistemaLojaModel.SubConta" />
+          <EntitySet Name="TipoContas" EntityType="SistemaLojaModel.TipoConta" />
+          <AssociationSet Name="FK_SaldoInicialBanco_Banco" Association="SistemaLojaModel.FK_SaldoInicialBanco_Banco">
+            <End Role="Banco" EntitySet="Bancoes" />
+            <End Role="SaldoInicialBanco" EntitySet="SaldoInicialBancoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conta_TipoConta" Association="SistemaLojaModel.FK_Conta_TipoConta">
+            <End Role="TipoConta" EntitySet="TipoContas" />
+            <End Role="Conta" EntitySet="Contas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubConta_Conta" Association="SistemaLojaModel.FK_SubConta_Conta">
+            <End Role="Conta" EntitySet="Contas" />
+            <End Role="SubConta" EntitySet="SubContas" />
+          </AssociationSet>
+          <FunctionImport Name="SelecEstoqueApuradoGrid" ReturnType="Collection(SistemaLojaModel.SelecEstoqueApuradoGrid_Result)" />
+          <FunctionImport Name="SelecTodasTabelas" ReturnType="Collection(String)" />
+        </EntityContainer>
+        <EntityType Name="EstoqueApurado">
+          <Key>
+            <PropertyRef Name="IdEstoqueApurado" />
+          </Key>
+          <Property Name="IdEstoqueApurado" Type="Int32" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="Int32" Nullable="false" />
+          <Property Name="CodBarrasApurado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DataUltModif" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EstoqueApuradoLog">
+          <Key>
+            <PropertyRef Name="IdEstoqueApuradoLog" />
+          </Key>
+          <Property Name="IdEstoqueApuradoLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstoqueApurado" Type="Int32" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="Int32" Nullable="false" />
+          <Property Name="CodBarrasApurado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DataModifApurado" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataModifLog" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EstoqueDivergente">
+          <Key>
+            <PropertyRef Name="IdEstoqueDivergente" />
+          </Key>
+          <Property Name="IdEstoqueDivergente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstoque" Type="Int32" Nullable="false" />
+          <Property Name="CodBarras" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroFab" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EstoqueDisp" Type="Int32" Nullable="false" />
+          <Property Name="EstoqueDispApurado" Type="Int32" Nullable="false" />
+          <Property Name="DataInclusao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="SelectEstoqueSemApuracao_Result">
+          <Property Type="Int32" Name="IdEstoque" Nullable="false" />
+          <Property Type="String" Name="CodBarras" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="NomeProduto" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="NumeroFab" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="EstoqueDisp" Nullable="true" />
+          <Property Type="DateTime" Name="DataInclusao" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SelecGrupoPorCusto_Result">
+          <Property Type="Decimal" Name="TotalCusto" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="String" Name="Grupo" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelecSubGrupoPorCusto_Result">
+          <Property Type="Decimal" Name="TotalCusto" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="String" Name="Grupo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SubGrupo" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="IdBanco" />
+          </Key>
+          <Property Name="IdBanco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeBanco" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SaldoInicialBancoes" Relationship="SistemaLojaModel.FK_SaldoInicialBanco_Banco" FromRole="Banco" ToRole="SaldoInicialBanco" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="idConta" />
+          </Key>
+          <Property Name="idConta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescConta" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="idTipoConta" Type="Int32" Nullable="false" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TipoConta" Relationship="SistemaLojaModel.FK_Conta_TipoConta" FromRole="Conta" ToRole="TipoConta" />
+          <NavigationProperty Name="SubContas" Relationship="SistemaLojaModel.FK_SubConta_Conta" FromRole="Conta" ToRole="SubConta" />
+        </EntityType>
+        <EntityType Name="EstoqueImpressaoEtiqueta">
+          <Key>
+            <PropertyRef Name="IdEstoqueImpressaoEtiqueta" />
+          </Key>
+          <Property Name="IdEstoqueImpressaoEtiqueta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCodigo" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarras" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Grupo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroFab" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EstoqueDisp" Type="Int32" Nullable="false" />
+          <Property Name="Venda" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Fornecedor" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaldoInicialBanco">
+          <Key>
+            <PropertyRef Name="idSaldoInicialBanco" />
+          </Key>
+          <Property Name="idSaldoInicialBanco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBanco" Type="Int32" Nullable="false" />
+          <Property Name="ValorInicial" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Ano" Type="Int32" Nullable="false" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Banco" Relationship="SistemaLojaModel.FK_SaldoInicialBanco_Banco" FromRole="SaldoInicialBanco" ToRole="Banco" />
+        </EntityType>
+        <EntityType Name="SubConta">
+          <Key>
+            <PropertyRef Name="idSubConta" />
+          </Key>
+          <Property Name="idSubConta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescSubConta" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="idConta" Type="Int32" Nullable="false" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Conta" Relationship="SistemaLojaModel.FK_SubConta_Conta" FromRole="SubConta" ToRole="Conta" />
+        </EntityType>
+        <EntityType Name="TipoConta">
+          <Key>
+            <PropertyRef Name="idTipoConta" />
+          </Key>
+          <Property Name="idTipoConta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoConta" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DataModif" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contas" Relationship="SistemaLojaModel.FK_Conta_TipoConta" FromRole="TipoConta" ToRole="Conta" />
+        </EntityType>
+        <Association Name="FK_SaldoInicialBanco_Banco">
+          <End Type="SistemaLojaModel.Banco" Role="Banco" Multiplicity="1" />
+          <End Type="SistemaLojaModel.SaldoInicialBanco" Role="SaldoInicialBanco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco">
+              <PropertyRef Name="IdBanco" />
+            </Principal>
+            <Dependent Role="SaldoInicialBanco">
+              <PropertyRef Name="idBanco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conta_TipoConta">
+          <End Type="SistemaLojaModel.TipoConta" Role="TipoConta" Multiplicity="1" />
+          <End Type="SistemaLojaModel.Conta" Role="Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConta">
+              <PropertyRef Name="idTipoConta" />
+            </Principal>
+            <Dependent Role="Conta">
+              <PropertyRef Name="idTipoConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubConta_Conta">
+          <End Type="SistemaLojaModel.Conta" Role="Conta" Multiplicity="1" />
+          <End Type="SistemaLojaModel.SubConta" Role="SubConta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="idConta" />
+            </Principal>
+            <Dependent Role="SubConta">
+              <PropertyRef Name="idConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SelecEstoqueApuradoGrid_Result">
+          <Property Type="Int32" Name="IdEstoqueApurado" Nullable="false" />
+          <Property Type="String" Name="CodBarrasApurado" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="NomeProduto" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="codEncontrado" Nullable="false" MaxLength="14" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaLojaModelStoreContainer" CdmEntityContainer="SistemaLojaEntities">
+          <EntitySetMapping Name="Estoques">
+            <EntityTypeMapping TypeName="SistemaLojaModel.Estoque">
+              <MappingFragment StoreEntitySet="Estoque">
+                <ScalarProperty Name="C_IPI" ColumnName="C_IPI" />
+                <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+                <ScalarProperty Name="IdEstoque" ColumnName="IdEstoque" />
+                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Curva" ColumnName="Curva" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="NumeroFab" ColumnName="NumeroFab" />
+                <ScalarProperty Name="EstoqueMin" ColumnName="EstoqueMin" />
+                <ScalarProperty Name="EstoqueMax" ColumnName="EstoqueMax" />
+                <ScalarProperty Name="EstoqueDisp" ColumnName="EstoqueDisp" />
+                <ScalarProperty Name="Custo" ColumnName="Custo" />
+                <ScalarProperty Name="Lucro" ColumnName="Lucro" />
+                <ScalarProperty Name="Venda" ColumnName="Venda" />
+                <ScalarProperty Name="Dolar" ColumnName="Dolar" />
+                <ScalarProperty Name="ABC" ColumnName="ABC" />
+                <ScalarProperty Name="Fornecedor" ColumnName="Fornecedor" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+                <ScalarProperty Name="Gaveta" ColumnName="Gaveta" />
+                <ScalarProperty Name="Utilizado" ColumnName="Utilizado" />
+                <ScalarProperty Name="Fabricante" ColumnName="Fabricante" />
+                <ScalarProperty Name="SubGrupo" ColumnName="SubGrupo" />
+                <ScalarProperty Name="NomeCurto" ColumnName="NomeCurto" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="NCM" ColumnName="NCM" />
+                <ScalarProperty Name="C_CST_O" ColumnName="C_CST_O" />
+                <ScalarProperty Name="C_CST" ColumnName="C_CST" />
+                <ScalarProperty Name="C_ECF_ALIQ" ColumnName="C_ECF_ALIQ" />
+                <ScalarProperty Name="C_ICMS" ColumnName="C_ICMS" />
+                <ScalarProperty Name="C_ICMS_ST" ColumnName="C_ICMS_ST" />
+                <ScalarProperty Name="C_RED_BCALC" ColumnName="C_RED_BCALC" />
+                <ScalarProperty Name="DataUltVenda" ColumnName="DataUltVenda" />
+                <ScalarProperty Name="DataUltCompra" ColumnName="DataUltCompra" />
+                <ScalarProperty Name="CFOP_INUF" ColumnName="CFOP_INUF" />
+                <ScalarProperty Name="CFOP_OUTUF" ColumnName="CFOP_OUTUF" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstoqueApuradoes">
+            <EntityTypeMapping TypeName="SistemaLojaModel.EstoqueApurado">
+              <MappingFragment StoreEntitySet="EstoqueApurado">
+                <ScalarProperty Name="DataUltModif" ColumnName="DataUltModif" />
+                <ScalarProperty Name="CodBarrasApurado" ColumnName="CodBarrasApurado" />
+                <ScalarProperty Name="EstoqueDispApurado" ColumnName="EstoqueDispApurado" />
+                <ScalarProperty Name="IdEstoqueApurado" ColumnName="IdEstoqueApurado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstoqueApuradoLogs">
+            <EntityTypeMapping TypeName="SistemaLojaModel.EstoqueApuradoLog">
+              <MappingFragment StoreEntitySet="EstoqueApuradoLog">
+                <ScalarProperty Name="DataModifLog" ColumnName="DataModifLog" />
+                <ScalarProperty Name="DataModifApurado" ColumnName="DataModifApurado" />
+                <ScalarProperty Name="CodBarrasApurado" ColumnName="CodBarrasApurado" />
+                <ScalarProperty Name="EstoqueDispApurado" ColumnName="EstoqueDispApurado" />
+                <ScalarProperty Name="IdEstoqueApurado" ColumnName="IdEstoqueApurado" />
+                <ScalarProperty Name="IdEstoqueApuradoLog" ColumnName="IdEstoqueApuradoLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstoqueDivergentes">
+            <EntityTypeMapping TypeName="SistemaLojaModel.EstoqueDivergente">
+              <MappingFragment StoreEntitySet="EstoqueDivergente">
+                <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
+                <ScalarProperty Name="EstoqueDispApurado" ColumnName="EstoqueDispApurado" />
+                <ScalarProperty Name="EstoqueDisp" ColumnName="EstoqueDisp" />
+                <ScalarProperty Name="NumeroFab" ColumnName="NumeroFab" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+                <ScalarProperty Name="IdEstoque" ColumnName="IdEstoque" />
+                <ScalarProperty Name="IdEstoqueDivergente" ColumnName="IdEstoqueDivergente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SalvaEstoqueDivergente" FunctionName="SistemaLojaModel.Store.SalvaEstoqueDivergente" />
+          <FunctionImportMapping FunctionImportName="SelectEstoqueSemApuracao" FunctionName="SistemaLojaModel.Store.SelectEstoqueSemApuracao">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaLojaModel.SelectEstoqueSemApuracao_Result">
+                <ScalarProperty Name="IdEstoque" ColumnName="IdEstoque" />
+                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="NumeroFab" ColumnName="NumeroFab" />
+                <ScalarProperty Name="EstoqueDisp" ColumnName="EstoqueDisp" />
+                <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ExcluirEstoque" FunctionName="SistemaLojaModel.Store.ExcluirEstoque" />
+          <FunctionImportMapping FunctionImportName="SelecGrupoPorCusto" FunctionName="SistemaLojaModel.Store.SelecGrupoPorCusto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaLojaModel.SelecGrupoPorCusto_Result">
+                <ScalarProperty Name="TotalCusto" ColumnName="TotalCusto" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelecSubGrupoPorCusto" FunctionName="SistemaLojaModel.Store.SelecSubGrupoPorCusto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaLojaModel.SelecSubGrupoPorCusto_Result">
+                <ScalarProperty Name="TotalCusto" ColumnName="TotalCusto" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="SubGrupo" ColumnName="SubGrupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Bancoes">
+            <EntityTypeMapping TypeName="SistemaLojaModel.Banco">
+              <MappingFragment StoreEntitySet="Banco">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+                <ScalarProperty Name="NomeBanco" ColumnName="NomeBanco" />
+                <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contas">
+            <EntityTypeMapping TypeName="SistemaLojaModel.Conta">
+              <MappingFragment StoreEntitySet="Conta">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+                <ScalarProperty Name="idTipoConta" ColumnName="idTipoConta" />
+                <ScalarProperty Name="DescConta" ColumnName="DescConta" />
+                <ScalarProperty Name="idConta" ColumnName="idConta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstoqueImpressaoEtiquetas">
+            <EntityTypeMapping TypeName="SistemaLojaModel.EstoqueImpressaoEtiqueta">
+              <MappingFragment StoreEntitySet="EstoqueImpressaoEtiqueta">
+                <ScalarProperty Name="Fornecedor" ColumnName="Fornecedor" />
+                <ScalarProperty Name="Venda" ColumnName="Venda" />
+                <ScalarProperty Name="EstoqueDisp" ColumnName="EstoqueDisp" />
+                <ScalarProperty Name="NumeroFab" ColumnName="NumeroFab" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="CodigoBarras" ColumnName="CodigoBarras" />
+                <ScalarProperty Name="idCodigo" ColumnName="idCodigo" />
+                <ScalarProperty Name="IdEstoqueImpressaoEtiqueta" ColumnName="IdEstoqueImpressaoEtiqueta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaldoInicialBancoes">
+            <EntityTypeMapping TypeName="SistemaLojaModel.SaldoInicialBanco">
+              <MappingFragment StoreEntitySet="SaldoInicialBanco">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+                <ScalarProperty Name="Ano" ColumnName="Ano" />
+                <ScalarProperty Name="ValorInicial" ColumnName="ValorInicial" />
+                <ScalarProperty Name="idBanco" ColumnName="idBanco" />
+                <ScalarProperty Name="idSaldoInicialBanco" ColumnName="idSaldoInicialBanco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubContas">
+            <EntityTypeMapping TypeName="SistemaLojaModel.SubConta">
+              <MappingFragment StoreEntitySet="SubConta">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+                <ScalarProperty Name="idConta" ColumnName="idConta" />
+                <ScalarProperty Name="DescSubConta" ColumnName="DescSubConta" />
+                <ScalarProperty Name="idSubConta" ColumnName="idSubConta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContas">
+            <EntityTypeMapping TypeName="SistemaLojaModel.TipoConta">
+              <MappingFragment StoreEntitySet="TipoConta">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataModif" ColumnName="DataModif" />
+                <ScalarProperty Name="DescTipoConta" ColumnName="DescTipoConta" />
+                <ScalarProperty Name="idTipoConta" ColumnName="idTipoConta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SelecEstoqueApuradoGrid" FunctionName="SistemaLojaModel.Store.SelecEstoqueApuradoGrid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaLojaModel.SelecEstoqueApuradoGrid_Result">
+                <ScalarProperty Name="IdEstoqueApurado" ColumnName="IdEstoqueApurado" />
+                <ScalarProperty Name="CodBarrasApurado" ColumnName="CodBarrasApurado" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="codEncontrado" ColumnName="codEncontrado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelecTodasTabelas" FunctionName="SistemaLojaModel.Store.SelecTodasTabelas" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

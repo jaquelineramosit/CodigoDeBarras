@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f920b5aa5b24f259dfb756c8cdd7a6e" Name="Diagram1" ZoomLevel="17">
+        <EntityTypeShape EntityType="SistemaLojaModel.Estoque" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaLojaModel.EstoqueApurado" Width="1.5" PointX="5.625" PointY="8" />
+        <EntityTypeShape EntityType="SistemaLojaModel.EstoqueApuradoLog" Width="1.5" PointX="7.375" PointY="8" />
+        <EntityTypeShape EntityType="SistemaLojaModel.EstoqueDivergente" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SistemaLojaModel.Banco" Width="1.5" PointX="7.375" PointY="1.125" />
+        <EntityTypeShape EntityType="SistemaLojaModel.Conta" Width="1.5" PointX="7.625" PointY="5" />
+        <EntityTypeShape EntityType="SistemaLojaModel.EstoqueImpressaoEtiqueta" Width="1.5" PointX="3.25" PointY="7" />
+        <EntityTypeShape EntityType="SistemaLojaModel.SaldoInicialBanco" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="SistemaLojaModel.SubConta" Width="1.5" PointX="9.875" PointY="5" />
+        <EntityTypeShape EntityType="SistemaLojaModel.TipoConta" Width="1.5" PointX="5.5" PointY="5" />
+        <AssociationConnector Association="SistemaLojaModel.FK_SaldoInicialBanco_Banco" />
+        <AssociationConnector Association="SistemaLojaModel.FK_Conta_TipoConta" />
+        <AssociationConnector Association="SistemaLojaModel.FK_SubConta_Conta" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
