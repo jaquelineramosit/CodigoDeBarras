@@ -24,6 +24,7 @@ namespace CodigoDeBarras
             //Application.Run(new frmEstoqueSistema());
             //Application.Run(new frmEstoqueConferir());
             //Application.Run(new frmGerarEtiqueta());
+            //Application.Run(new PopupImpressao());
         }
     }
 }

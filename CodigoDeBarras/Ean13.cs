@@ -256,7 +256,7 @@ namespace CodigoDeBarras
 
         }
 
-        public void ImprimirEtiquetaCompleta(System.Drawing.Graphics g, EstoqueImpressaoEtiqueta estoqueImpressaoEtiqueta, int xInicio, float yInicio, System.Drawing.Point pt)
+        public void ImprimirEtiquetaCompleta(System.Drawing.Graphics g, EstoqueImpressaoEtiqueta estoqueImpressaoEtiqueta, double xInicio, double yInicio, System.Drawing.Point pt)
         {
 
             float width = this.Width * this.Scale;
@@ -279,10 +279,10 @@ namespace CodigoDeBarras
             System.Text.StringBuilder strbEAN13 = new System.Text.StringBuilder();
             System.Text.StringBuilder sbTemp = new System.Text.StringBuilder();
 
-            float xPosition = xInicio;
-            float xStart = xInicio;
-            float yStart = yInicio - (float)Convert.ToDecimal(1.5);
-            float xEnd = 0;
+            float xPosition = (float)xInicio;
+            float xStart = (float)xInicio;
+            float yStart = (float)(yInicio + 1.5);
+            double xEnd = 0;
 
             System.Drawing.Font font = new System.Drawing.Font("Arial", this._fFontSize * this.Scale);
 
@@ -325,11 +325,9 @@ namespace CodigoDeBarras
                     // Save room for the UPC number below the bar code.
                     if ((i > 12 && i < 55) || (i > 57 && i < 101))
                         // Draw space for the number
-                        //g.FillRectangle(brush, xPosition, yStart - 2, lineWidth, height - fTextHeight); //*mudar
                         g.FillRectangle(brush, xPosition, yStart, lineWidth, height - fTextHeight);
                     else
                         // Draw a full line.
-                        //g.FillRectangle(brush, xPosition, yStart - 2, lineWidth, height); //*mudar
                         g.FillRectangle(brush, xPosition, yStart, lineWidth, height);
                 }
                 //////
@@ -339,13 +337,14 @@ namespace CodigoDeBarras
 
             //nome do produto acima do codigo de barras
             string sDescricaoProduto = estoqueImpressaoEtiqueta.NomeProduto;
-            if (sDescricaoProduto.Length > 50) sDescricaoProduto = sDescricaoProduto.Substring(0, 50);
-            g.DrawString(sDescricaoProduto, font, brush, new System.Drawing.PointF(xInicio, yInicio - 7));
+            if (sDescricaoProduto.Length > 30) sDescricaoProduto = sDescricaoProduto.Substring(0, 30);
+            g.DrawString(sDescricaoProduto, font, brush, new System.Drawing.PointF((float)xInicio, (float)yInicio - 4)); //-5
+            //g.DrawString(sDescricaoProduto, font, brush, new System.Drawing.PointF((float)xInicio, (float)yInicio - 7));
 
             //Preço do produto
             string sValor = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", estoqueImpressaoEtiqueta.Venda);
-            g.DrawString(sValor + " - " + estoqueImpressaoEtiqueta.NumeroFab, font, brush, new System.Drawing.PointF(xInicio, yInicio - 5));
-            //ev.Graphics.DrawString(xInicio.ToString() + "-" + (yInicio - 6).ToString() + cEstoque.ValorVenda.ToString(), font, brush, new System.Drawing.PointF(xInicio, yInicio - 5));
+            g.DrawString(sValor + " - " + estoqueImpressaoEtiqueta.NumeroFab, font, brush, new System.Drawing.PointF((float)xInicio, (float)yInicio - 2)); //-3
+            //g.DrawString(sValor + " - " + estoqueImpressaoEtiqueta.NumeroFab, font, brush, new System.Drawing.PointF((float)xInicio, (float)yInicio - 5));
 
 
             // Draw the upc numbers below the line.

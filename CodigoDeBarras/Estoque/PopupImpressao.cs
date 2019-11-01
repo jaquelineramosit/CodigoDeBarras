@@ -81,20 +81,29 @@ namespace CodigoDeBarras
                 var printDocument = sender as System.Drawing.Printing.PrintDocument;
                 if (printDocument != null)
                 {
-                    int xInicio = 4, linha = 0;
-                    float yInicio = (float)Convert.ToDecimal(6.4);
-
+                    double xEspacoDireiraIni = 7,
+                            xEspacoEsquerdaIni = 7,
+                            yEspacaoDireitaIni = 8.5,
+                            yEspacoEsquerdaIni = 8.5,
+                            recuoHTexto = 2,
+                            recuoVTexto = 2,
+                            xInicio = xEspacoDireiraIni + recuoHTexto,
+                            yInicio = yEspacaoDireitaIni + recuoVTexto,
+                            larguraEtiqueta = 63.5,
+                            alturaEtiqueta = 26.4;
+                            
+                    int linha = 0;
+                    
                     for (int i = 0; i < iQtdeEtiqRestante; i++)
                     {
                         estoqueImpressaoEtiqueta = lstnovaListaEstoqueEtiqueta[i];
 
-                        if (linha == 12) linha = 0;
-                        if (i > 0) xInicio += 71; //SETA UM ESPAÇO ENTRE AS ETIQUETAS NO VALOR DE 71
+                        if (linha == 11) linha = 0;
+                        if (i > 0) xInicio += recuoHTexto + 2.5 + larguraEtiqueta;
                         if (i % 3 == 0 && i > 0)
                         {
-                            yInicio = yInicio + (float)Convert.ToDecimal(23.8); //QUEBRA A LINHA EM MULTIPLOS DE 3
-                            xInicio = 4;
-
+                            yInicio = yInicio + (float)Convert.ToDecimal(alturaEtiqueta); //QUEBRA A LINHA EM MULTIPLOS DE 3
+                            xInicio = xEspacoDireiraIni + recuoHTexto;
                             linha += 1;
                         }
 
@@ -102,12 +111,12 @@ namespace CodigoDeBarras
                         ean13.Linha = linha;
                         ean13.Scale = (float)Convert.ToDecimal(0.8);
                         ean13.ImprimirEtiquetaCompleta(ev.Graphics, estoqueImpressaoEtiqueta, xInicio, yInicio, new System.Drawing.Point(0, 0));
-
+                        
                         //txtChecksumDigit.Text = ean13.ChecksumDigit;
 
-                        if (i == 35)
+                        if (i == 32)
                         {
-                            lstnovaListaEstoqueEtiqueta.RemoveRange(0, 36);
+                            lstnovaListaEstoqueEtiqueta.RemoveRange(0, 33);
                             iQtdeEtiqRestante = lstnovaListaEstoqueEtiqueta.Count;
                             ev.HasMorePages = true;
                             break;
@@ -142,7 +151,7 @@ namespace CodigoDeBarras
             
             for (int j = 0; j < (13 - strCodEan.Length); j++)
             {
-                strCodEan = "1" + strCodEan;
+                strCodEan = "2" + strCodEan;
             }
 
             ean13.CountryCode = strCodEan.Substring(1, 2);
@@ -166,5 +175,14 @@ namespace CodigoDeBarras
             }
         }
 
+        private void cbQtdeEtiquetas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picBarcode_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
